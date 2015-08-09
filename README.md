@@ -1,5 +1,5 @@
 # TM4C123 connects to Nokia 5110 LCD display and DHT11 sensor
-Display temperature and humidity on Nokia 5110 screen, driven by TM4C123.  Programs written with Energia with appropriate libraries.
+Display temperature and humidity on Nokia 5110 screen, driven by TM4C123.  Programs written with Energia utilizing appropriate libraries.
 
 References:
 - DHT11: http://www.adafruit.com/product/386
