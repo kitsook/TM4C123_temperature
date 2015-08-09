@@ -6,6 +6,7 @@ References:
 - DHT11 library: http://playground.arduino.cc/main/DHT11Lib
 - Nokia 5110 LCD library: http://forum.43oh.com/topic/2876-energia-library-nokia-5110-lcd-boosterpackbreakout-pcb/
 
-Note that the Nokia 5110 library is not included in the Energia release.  But you can get source code from github
+Note that the Nokia 5110 library is not included in the Energia release.  But you can get source code from github:
+https://github.com/energia/Energia/tree/master/examples/07.Display
 
 Both libraries are slightly modified to work with TM4C123.
