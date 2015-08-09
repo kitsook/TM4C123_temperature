@@ -43,6 +43,8 @@ LCD_5110_SPI myScreen(PA_7,    // Chip Select
 #endif
 
 dht11 DHT11;
+// DHT11 data pin
+#define DHT11_PIN PD_7
 
 // Add setup code
 void setup() {
@@ -74,7 +76,7 @@ void setup() {
 // Add loop code
 void loop() {
     // read temp and humidity
-    int chk = DHT11.read(PD_7);
+    int chk = DHT11.read(DHT11_PIN);
 
     Serial.print("Read sensor: ");
     switch (chk) {
