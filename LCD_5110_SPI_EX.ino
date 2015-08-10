@@ -46,6 +46,8 @@ dht11 DHT11;
 // DHT11 data pin
 #define DHT11_PIN PD_7
 
+volatile uint8_t count = 0;
+
 // Add setup code
 void setup() {
 #if defined(__MSP430G2553__)
@@ -75,6 +77,8 @@ void setup() {
 
 // Add loop code
 void loop() {
+    myScreen.clear();
+    
     // read temp and humidity
     int chk = DHT11.read(DHT11_PIN);
 
@@ -95,7 +99,7 @@ void loop() {
     }
     
     if (chk != DHTLIB_OK) {
-        myScreen.clear();
+        myScreen.text(0, 0, "Problem reading sensor... wait...");
         delay(2000);
         return;
     }
@@ -107,14 +111,16 @@ void loop() {
     Serial.println((float)DHT11.temperature, 2);
 
     myScreen.setFont(0);
-    myScreen.text(0, 0, "Temp   :");
-    myScreen.text(8, 0, String((float)DHT11.temperature, 1));
-    myScreen.text(12, 0, String("C"));
+    myScreen.text(0, count + 0, "Temp   :");
+    myScreen.text(8, count + 0, String((float)DHT11.temperature, 1));
+    myScreen.text(12, count + 0, String("C"));
 
-    myScreen.text(0, 1, "R. Hum :");
-    myScreen.text(8, 1, String((float)DHT11.humidity, 1));
-    myScreen.text(12, 1, String("%"));
+    myScreen.text(0, count + 1, "R. Hum :");
+    myScreen.text(8, count + 1, String((float)DHT11.humidity, 1));
+    myScreen.text(12, count + 1, String("%"));
 
-    
-    delay(60000);
+    count++;
+    count = count % 5;
+
+    sleep(60000);
 }
