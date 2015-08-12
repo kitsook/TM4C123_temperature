@@ -9,4 +9,4 @@ References:
 Note that the Nokia 5110 library is not included in the Energia release.  But you can get source code from github:
 https://github.com/energia/Energia/tree/master/examples/07.Display
 
-Both libraries are slightly modified to work with TM4C123.
+Both libraries are slightly modified to work with TM4C123
