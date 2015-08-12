@@ -64,7 +64,6 @@ void setup() {
 #endif
     
     myScreen.begin();
-    myScreen.setContrast(0x58);
     myScreen.clear();
     myScreen.text(0, 0, "Initializing");
     
@@ -99,7 +98,7 @@ void loop() {
     }
     
     if (chk != DHTLIB_OK) {
-        myScreen.text(0, 0, "Problem reading sensor... wait...");
+        myScreen.text(0, 0, "Problem reading sensor. Wait...");
         delay(2000);
         return;
     }
