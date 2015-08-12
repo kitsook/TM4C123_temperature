@@ -64,6 +64,7 @@ void setup() {
 #endif
     
     myScreen.begin();
+    //myScreen.setContrast(0x58);
     myScreen.clear();
     myScreen.text(0, 0, "Initializing");
     
