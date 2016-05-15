@@ -2,6 +2,24 @@
 // TM4C123 connected to Nokia 5110 LCD display and DHT11 sensor
 //
 // Nokia LCD 5110 part based on sample of LCD_5110_SPI library
+//
+// Wiring (using the third SPI port on TM4C123):
+// TM4C123 -  LCD 5110        Comment
+// ==================================
+// VBUS    -  Vcc             My version of 5110 supports 3v to 5v
+// GND     -  GND
+// PB_5    -  RST             Reset 
+// PB_4    -  Clk             SCK(2) to Clock
+// PB_7    -  Din             MOSI(2) to Serial data in
+// PA_7    -  CE              Chip Select
+// PA_2    -  DC              Select between data or command
+
+
+// TM4C123 -  DHT11        Comment
+// ==================================
+// PD_7    -  Data
+// VBUS    -  Vcc
+// GND     -  GND
 
 // Core library for code-sense
 #if defined(WIRING) // Wiring specific
@@ -28,19 +46,11 @@
 #include "LCD_5110_SPI.h"
 #include "dht11.h"
 
-// Variables
-/// P._. / PB_4 = SCK (2) = Serial Clock
-/// P._. / PB_7 = MOSI (2) = Serial Data
-
-#if defined(__MSP430G2553__)
-LCD_5110_SPI myScreen;
-#elif defined(__LM4F120H5QR__)
 LCD_5110_SPI myScreen(PA_7,    // Chip Select
                       PA_2,    // Data/Command
                       PB_5,    // Reset
-                      PA_6,    // Backlight
-                      PUSH2);  // Push Button 2
-#endif
+                      PA_6,    // Backlight - not used in my program
+                      PUSH2);  // Push Button 2 - not used in my program
 
 dht11 DHT11;
 // DHT11 data pin
@@ -50,21 +60,12 @@ volatile uint8_t count = 0;
 
 // Add setup code
 void setup() {
-#if defined(__MSP430G2553__)
-    SPI.begin();
-    SPI.setClockDivider(SPI_CLOCK_DIV2);
-    SPI.setBitOrder(MSBFIRST);
-    SPI.setDataMode(SPI_MODE0);
-    
-#elif defined(__LM4F120H5QR__)
-    //SPI.Select(2);
-    SPI.setModule(2);
+    SPI.setModule(2);      // using the third SPI port
     SPI.begin();
     SPI.setClockDivider(SPI_CLOCK_DIV128); // for LM4F120H5QR DIV2 = 4 MHz !
-#endif
     
     myScreen.begin();
-    //myScreen.setContrast(0x58);
+    myScreen.setContrast(0x28);
     myScreen.clear();
     myScreen.text(0, 0, "Initializing");
     
@@ -121,6 +122,6 @@ void loop() {
 
     count++;
     count = count % 5;
-
+    
     sleep(60000);
 }
