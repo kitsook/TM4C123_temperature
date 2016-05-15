@@ -7,6 +7,7 @@
 // TM4C123 -  LCD 5110        Comment
 // ==================================
 // VBUS    -  Vcc             My version of 5110 supports 3v to 5v
+// VBUS    -  BL              Backlight
 // GND     -  GND
 // PB_5    -  RST             Reset 
 // PB_4    -  Clk             SCK(2) to Clock
