@@ -13,4 +13,26 @@ References:
 Note that the Nokia 5110 library is not included in the Energia release.  But you can get source code from github:
 https://github.com/energia/Energia/tree/master/examples/07.Display
 
-Both libraries are slightly modified to work with TM4C123
+Both libraries are slightly modified to work with TM4C123.
+
+Here is the wiring.  Note that my Nokia 5110 board support input of 3v to 5v.  Your mileage may vary.
+```
+TM4C123 -  LCD 5110        Comment
+==================================
+VBUS    -  Vcc             My version of 5110 supports 3v to 5v
+VBUS    -  BL              Backlight
+GND     -  GND
+PB_5    -  RST             Reset 
+PB_4    -  Clk             SCK(2) to Clock
+PB_7    -  Din             MOSI(2) to Serial data in
+PA_7    -  CE              Chip Select
+PA_2    -  DC              Select between data or command
+
+
+
+TM4C123 -  DHT11        Comment
+==================================
+PD_7    -  Data
+VBUS    -  Vcc
+GND     -  GND
+```
